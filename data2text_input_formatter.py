@@ -160,11 +160,11 @@ def append_play_by_play_with_key_as_val(key, inning, inning_play, play_by_play_r
          str(inning), top_bottom, str(play_index)]))
 
 
-def process(input_folder, output_src, output_tgt):
+def process(input_folder, output_src, output_tgt, type):
     output_file = codecs.open(output_src, mode='w', encoding='utf-8')
     target_file = codecs.open(output_tgt, mode='w', encoding='utf-8')
     for filename in os.listdir(input_folder):
-        if not MODE in filename:
+        if not type in filename:
             continue
         d = None
         with codecs.open(input_folder+filename, encoding='utf-8') as json_data:
@@ -191,9 +191,13 @@ parser.add_argument('-output_src',type=str,
                     help='output src file')
 parser.add_argument('-output_tgt',type=str,
                     help='output tgt file')
+parser.add_argument('-type', type=str, default='train',
+                    choices=['train', 'valid', 'test'],
+                    help='Type of dataset to generate. Options [train|valid|test]')
 args = parser.parse_args()
 
 input_folder = args.input_folder
 output_src = args.output_src
 output_tgt = args.output_tgt
-process(input_folder, output_src, output_tgt)
+type = args.type
+process(input_folder, output_src, output_tgt, type)
