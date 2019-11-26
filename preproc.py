@@ -2,7 +2,13 @@ import codecs
 import json
 import os
 import argparse
+from datetime import datetime
 
+
+def sort_files_key(x):
+    date_string = x[-15:-5]  # get the date portion of file name
+    datetime_object = datetime.strptime(date_string, "%Y-%m-%d")
+    return datetime_object
 
 def prep_mlb(mlb_split_keys, input, output):
     with codecs.open(mlb_split_keys, "r", "utf-8") as f:
@@ -16,7 +22,9 @@ def prep_mlb(mlb_split_keys, input, output):
     train_index = 0
     train, val, test = [], [], []
     train_keys_order, val_keys_order, test_keys_order = [], [], []
-    for filename in os.listdir(input):
+    file_list = os.listdir(input)
+    sorted_file_list = sorted(file_list, key= sort_files_key)
+    for filename in sorted_file_list:
         with open(input + filename) as json_data:
             data = json.load(json_data)
         json_data.close()
