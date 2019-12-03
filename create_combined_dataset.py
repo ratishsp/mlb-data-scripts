@@ -52,12 +52,12 @@ def create_json(input_folder, input_summaries, output_folder):
                 output.append(entry)
 
         if len(output) > 0:
-            with codecs.open(output_folder+'data_'+filename, 'w+') as outfile:
+            with codecs.open(output_folder+'combined_'+filename, 'w+') as outfile:
                 json.dump(output, outfile)
             outfile.close()
 
 
-parser = argparse.ArgumentParser(description='Process years')
+parser = argparse.ArgumentParser(description='Combining box/line/play-by-play with summaries')
 parser.add_argument('-input_folder',type=str,
                     help='input folder containg box and line score stats')
 parser.add_argument('-input_summaries',type=str,
