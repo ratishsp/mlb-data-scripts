@@ -14,6 +14,8 @@ Run the following scripts in sequence
 ```
 python boxscore_data.py -year 1 -output ~/mlb-data/api-output/  # get the data for year 2017
 ```
+Alternatively you can download the dataset containing box/line/play-by-play scores from https://drive.google.com/drive/folders/1jLU5wYjic2BR21iOLn9Tkv415AWkFqfj?usp=sharing
+ 
 - [extract_summaries_from_recap_html.py](https://github.com/ratishsp/mlb-data-scripts/blob/master/extract_summaries_from_recap_html.py) extracts the recaps from the html. The names of the htmls to be downloaded is available in the file [recap_file_names.txt](https://github.com/ratishsp/mlb-data-scripts/blob/master/recap_file_names.txt)
  ```
 python extract_summaries_from_recap_html -recaps ~/mlb-data/recap_file_names.txt -output_folder ~/mlb-data/html-output/
